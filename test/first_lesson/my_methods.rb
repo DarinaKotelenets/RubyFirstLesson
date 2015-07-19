@@ -78,21 +78,21 @@ module MY_METHODS
   def create_bug
     @driver.find_element(:id, 'issue_tracker_id').find_element(:css, "option[value='1']").click
     @driver.find_element(:id, 'issue_subject').send_key 'bug_'+SUBJECT
-    @driver.find_element(:xpath, "#issue-form'>input[name = 'continue']").click
+    @driver.find_element(:css, "#issue-form'>input[name = 'continue']").click
 
   end
 
   def create_feature
     @driver.find_element(:id, 'issue_tracker_id').find_element(:css, "option[value='2']").click
     @driver.find_element(:id, 'issue_subject').send_key 'feature_'+SUBJECT
-    @driver.find_element(:xpath, "#issue-form>input[name = 'continue']").click
+    @driver.find_element(:css, "#issue-form>input[name = 'continue']").click
 
   end
 
   def create_support
     @driver.find_element(:id, 'issue_tracker_id').find_element(:css, "option[value='3']").click
     @driver.find_element(:id, 'issue_subject').send_key 'support_'+SUBJECT
-    @driver.find_element(:xpath, "#issue-form>input[name = 'continue']").click
+    @driver.find_element(:css, "#issue-form>input[name = 'continue']").click
 
   end
 

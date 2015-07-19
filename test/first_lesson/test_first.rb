@@ -97,8 +97,8 @@ class TEST_FIRST < Test::Unit::TestCase
     }
     puts "Test Passed: Memder role added" if cb
     cb.click
-    @driver.find_element(:xpath, ".//tr[@class ='even member' ]//input[@type = 'submit']").click
-    roles = @driver.find_element(:xpath, ".//*[@class = 'even member']//*[@class = 'roles']/span").text
+    @driver.find_element(:css, ".even member>input[type = 'submit']").click
+    roles = @driver.find_element(:css, ".even .roles>span").text
     assert_equal(roles, 'Developer, Reporter')
   end
 
