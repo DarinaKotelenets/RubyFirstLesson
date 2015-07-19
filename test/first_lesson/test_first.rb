@@ -17,7 +17,7 @@ class TEST_FIRST < Test::Unit::TestCase
     @wait.until {
       register(LOGIN, PASS, FIRST, LAST, MAIL, 'en')
       }
-      actual_result = @driver.find_element(:xpath, ".//*[@id='loggedas']/a")
+      actual_result = @driver.find_element(:css, "#loggedas .user")
       assert_equal(LOGIN, actual_result.text)
 
     puts "New user was registed"
@@ -30,7 +30,7 @@ class TEST_FIRST < Test::Unit::TestCase
       @driver.find_element(:class, 'logout').click
       log_in(PASS, LOGIN)
     }
-    actual_name = @driver.find_element(:xpath, ".//*[@id='loggedas']/a")
+    actual_name = @driver.find_element(:xpath, "#loggedas .user")
     assert_equal(LOGIN, actual_name.text)
 
     puts "Registered user can login"
@@ -78,7 +78,7 @@ class TEST_FIRST < Test::Unit::TestCase
     register(LOGIN, PASS, FIRST, LAST, MAIL, 'en')
     create_new_project(PROJECT_NAME, PROJECT_ID)
     add_new_member
-    number_of_users = @driver.find_elements(:xpath, ".//*[@class='name user']").size
+    number_of_users = @driver.find_elements(:class, 'name user').size
     puts number_of_users
     assert_true(number_of_users==2)
     puts "Test Passed: The new member added"
@@ -89,10 +89,10 @@ class TEST_FIRST < Test::Unit::TestCase
     register(LOGIN, PASS, FIRST, LAST, MAIL, 'en')
     create_new_project(PROJECT_NAME, PROJECT_ID)
     add_new_member
-    @driver.find_element(:xpath, ".//tr[@class = 'even member']//a[@class='icon icon-edit']").click
-    #@driver.find_element(:xpath, ".//tr[@class ='even member' ]//input[@value='4']")
+    @driver.find_element(:css, ".icon-edit").click
+    #@driver.find_element(:css, ".even member'>input[value='4']")
     cb = @wait.until {
-      element = @driver.find_element(:xpath, ".//tr[@class ='even member' ]//input[@value='4']")
+      element = @driver.find_element(:css, ".even member'>input[value='4']")
       element if element.displayed?
     }
     puts "Test Passed: Memder role added" if cb
@@ -119,8 +119,8 @@ class TEST_FIRST < Test::Unit::TestCase
     create_bug
     create_feature
     create_support
-    @driver.find_element(:xpath, ".//*[@id='main-menu']//a[@class = 'issues']").click
-    number_of_users = @driver.find_elements(:xpath, ".//*[@class='id']").size
+    @driver.find_element(:class, 'issues').click
+    number_of_users = @driver.find_elements(:class, 'id').size
     puts number_of_users
     assert_true(number_of_users==3)
 
